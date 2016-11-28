@@ -18,9 +18,9 @@ Copyright (C) 2011, 2012, 2013 Adept Technology
      along with this program; if not, write to the Free Software
      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-If you wish to redistribute ARIA under different terms, contact 
-Adept MobileRobots for information about a commercial version of ARIA at 
-robots@mobilerobots.com or 
+If you wish to redistribute ARIA under different terms, contact
+Adept MobileRobots for information about a commercial version of ARIA at
+robots@mobilerobots.com or
 Adept MobileRobots, 10 Columbia Drive, Amherst, NH 03031; +1-603-881-7960
 */
 
@@ -76,7 +76,7 @@ class ArUtil
 {
 public:
   /// Values for the bits from 0 to 16
-  enum BITS { 
+  enum BITS {
     BIT0 = 0x1, ///< value of BIT0
     BIT1 = 0x2, ///< value of BIT1
     BIT2 = 0x4, ///< value of BIT2
@@ -101,12 +101,12 @@ public:
 
   /// Sleep for the given number of milliseconds
   AREXPORT static void sleep(unsigned int ms);
-  
+
   /// Get the time in milliseconds
   AREXPORT static unsigned int getTime(void);
 
   /// Delete all members of a set. Does NOT empty the set.
-  /** 
+  /**
       Assumes that T is an iterator that supports the operator*, operator!=
       and operator++. The return is assumed to be a pointer to a class that
       needs to be deleted.
@@ -134,17 +134,17 @@ public:
     }
 
   /// Returns the minimum of the two values
-  static int findMin(int first, int second) 
+  static int findMin(int first, int second)
     { if (first < second) return first; else return second; }
   /// Returns the maximum of the two values
-  static int findMax(int first, int second) 
+  static int findMax(int first, int second)
     { if (first > second) return first; else return second; }
 
   /// Returns the minimum of the two values
-  static double findMin(double first, double second) 
+  static double findMin(double first, double second)
     { if (first < second) return first; else return second; }
   /// Returns the maximum of the two values
-  static double findMax(double first, double second) 
+  static double findMax(double first, double second)
     { if (first > second) return first; else return second; }
 
   /// OS-independent way of finding the size of a file.
@@ -166,15 +166,15 @@ public:
 
   /// Appends a slash to a path if there is not one there already
   AREXPORT static void appendSlash(char *path, size_t pathLength);
-  
+
   /// Appends a slash to the given string path if necessary.
   AREXPORT static void appendSlash(std::string &path);
 
   /// Fix the slash orientation in file path string for windows or linux
   AREXPORT static void fixSlashes(char *path, size_t pathLength);
-  
+
   /// Fixes the slash orientation in the given file path string for the current platform
-  AREXPORT static void fixSlashes(std::string &path); 
+  AREXPORT static void fixSlashes(std::string &path);
 
   /// Fix the slash orientation in file path string to be all forward
   AREXPORT static void fixSlashesForward(char *path, size_t pathLength);
@@ -187,7 +187,7 @@ public:
 
   /// Adds two directories, taking care of all slash issues
   AREXPORT static void addDirectories(char *dest, size_t destLength,
-				      const char *baseDir, 
+				      const char *baseDir,
 				      const char *insideDir);
 
 
@@ -217,37 +217,37 @@ public:
   /// Finds out if two strings are equal (ignoring case)
   AREXPORT static int strcasecmp(const char *str, const char *str2);
 
-  /// Finds out if a string has a suffix 
+  /// Finds out if a string has a suffix
   AREXPORT static bool strSuffixCmp(const char *str, const char *suffix);
 
-  /// Finds out if a string has a suffix 
+  /// Finds out if a string has a suffix
   AREXPORT static bool strSuffixCaseCmp(const char *str, const char *suffix);
-  
+
 
   /// Compares two strings (ignoring case and surrounding quotes)
   /**
-   * This helper method is primarily used to ignore surrounding quotes 
+   * This helper method is primarily used to ignore surrounding quotes
    * when comparing ArArgumentBuilder args.
-   * @return int set to 0 if the two strings are equivalent, a negative 
+   * @return int set to 0 if the two strings are equivalent, a negative
    * number if str1 is "less than" str2, and a postive number if it is
    * "greater than".
   **/
-  AREXPORT static int strcasequotecmp(const std::string &str1, 
+  AREXPORT static int strcasequotecmp(const std::string &str1,
                                       const std::string &str2);
 
 
   /// Puts a \ before spaces in src, puts it into dest
-  AREXPORT static void escapeSpaces(char *dest, const char *src, 
+  AREXPORT static void escapeSpaces(char *dest, const char *src,
 				    size_t maxLen);
 
   /// Strips out the quotes in the src buffer into the dest buffer
   AREXPORT static bool stripQuotes(char *dest, const char *src,size_t destLen);
-  
+
   /// Strips the quotes from the given string.
   AREXPORT static bool stripQuotes(std::string *strToStrip);
 
   /// Lowers a string from src into dest, make sure there's enough space
-  AREXPORT static void lower(char *dest, const char *src, 
+  AREXPORT static void lower(char *dest, const char *src,
 			     size_t maxLen);
   /// Returns true if this string is only alphanumeric (i.e. it contains only leters and numbers), false if it contains any non alphanumeric characters (punctuation, whitespace, control characters, etc.)
   AREXPORT static bool isOnlyAlphaNumeric(const char *str);
@@ -281,9 +281,9 @@ public:
   AREXPORT static void writeToFile(const char *str, FILE *file);
 
   /// Gets a string contained in an arbitrary file
-  AREXPORT static bool getStringFromFile(const char *fileName, 
+  AREXPORT static bool getStringFromFile(const char *fileName,
 					 char *str, size_t strLen);
-  /** 
+  /**
   These are for passing into getStringFromRegistry
   **/
   enum REGKEY {
@@ -328,38 +328,38 @@ public:
   AREXPORT static const char *TRUESTRING; ///< "true"
   AREXPORT static const char *FALSESTRING; ///< "false"
 
-  /** Put the current year (GMT) in s (e.g. "2005"). 
+  /** Put the current year (GMT) in s (e.g. "2005").
    *  @param s String buffer (allocated) to write year into
    *  @param len Size of @a s
    */
   AREXPORT static void putCurrentYearInString(char* s, size_t len);
-  /** Put the current month (GMT) in s (e.g. "09" if September). 
+  /** Put the current month (GMT) in s (e.g. "09" if September).
    *  @param s String buffer (allocated) to write month into
    *  @param len Size of @a s
    */
   AREXPORT static void putCurrentMonthInString(char* s, size_t len);
-  /** Put the current day (GMT) of the month in s (e.g. "20"). 
+  /** Put the current day (GMT) of the month in s (e.g. "20").
    *  @param s String buffer (allocated) to write day into
    *  @param len Size of @a s
    */
   AREXPORT static void putCurrentDayInString(char* s, size_t len);
-  /** Put the current hour (GMT) in s (e.g. "13" for 1 o'clock PM). 
+  /** Put the current hour (GMT) in s (e.g. "13" for 1 o'clock PM).
    *  @param s String buffer (allocated) to write hour into
    *  @param len Size of @a s
    */
   AREXPORT static void putCurrentHourInString(char* s, size_t len);
-  /** Put the current minute (GMT) in s (e.g. "05"). 
+  /** Put the current minute (GMT) in s (e.g. "05").
    *  @param s String buffer (allocated) to write minutes into
    *  @param len Size of @a s
    */
   AREXPORT static void putCurrentMinuteInString(char* s, size_t len);
-  /** Put the current second (GMT) in s (e.g. "59"). 
+  /** Put the current second (GMT) in s (e.g. "59").
    *  @param s String buffer (allocated) to write seconds into
    *  @param len Size of @a s
    */
   AREXPORT static void putCurrentSecondInString(char* s, size_t len);
-  
-  
+
+
   /// Parses the given time string (h:mm) and returns the corresponding time.
   /**
    * @param str the char * string to be parsed; in the 24-hour format h:mm
@@ -376,7 +376,7 @@ public:
    *  On Linux, this is equivalent to a call to localtime_r(@a timep, @a result) (which is threadsafe, including the returned pointer, since it uses a different time struct for each thread)
    *  On Windows, this is equivalent to a call to localtime(@a timep, @a result). In addition, a static mutex is used to make it threadsafe.
    *
-   *  @param timep Pointer to current time (Unix time_t; seconds since epoch) 
+   *  @param timep Pointer to current time (Unix time_t; seconds since epoch)
    *  @param result The result of calling platform localtime function is copied into this struct, so it must have been allocated.
    *  @return false on error (e.g. invalid input), otherwise true.
    *
@@ -389,7 +389,7 @@ public:
    */
   AREXPORT static bool localtime(const time_t *timep, struct tm *result);
 
-   
+
   /** Call ArUtil::localtime(const time_t*, struct tm *) with the current time obtained by calling
    * time(NULL).
    *  @return false on error (e.g. invalid input), otherwise true.
@@ -399,34 +399,34 @@ public:
   // these aren't needed in windows since it ignores case anyhow
 #ifndef WIN32
   /// this matches the case out of what file we want
-  AREXPORT static bool matchCase(const char *baseDir, const char *fileName, 
+  AREXPORT static bool matchCase(const char *baseDir, const char *fileName,
 			   char * result, size_t resultLen);
-#endif 
+#endif
   /// Pulls the directory out of a file name
-  AREXPORT static bool getDirectory(const char *fileName, 
+  AREXPORT static bool getDirectory(const char *fileName,
 				     char * result, size_t resultLen);
   /// Pulls the filename out of the file name
-  AREXPORT static bool getFileName(const char *fileName, 
+  AREXPORT static bool getFileName(const char *fileName,
 				     char * result, size_t resultLen);
-  
+
   /// Sets the timestamp on the specified file
-  AREXPORT static bool changeFileTimestamp(const char *fileName, 
+  AREXPORT static bool changeFileTimestamp(const char *fileName,
                                            time_t timestamp);
 
   /// Opens a file, defaulting it so that the file will close on exec
-  AREXPORT static FILE *fopen(const char *path, const char *mode, 
+  AREXPORT static FILE *fopen(const char *path, const char *mode,
 			      bool closeOnExec = true);
   /// Opens a file, defaulting it so that the file will close on exec
-  AREXPORT static int open(const char *pathname, int flags, 
+  AREXPORT static int open(const char *pathname, int flags,
 			   bool closeOnExec = true);
   /// Opens a file, defaulting it so that the file will close on exec
-  AREXPORT static int open(const char *pathname, int flags, mode_t mode, 
+  AREXPORT static int open(const char *pathname, int flags, mode_t mode,
 			   bool closeOnExec = true);
   /// Opens a file, defaulting it so that the file will close on exec
   AREXPORT static int creat(const char *pathname, mode_t mode,
 			    bool closeOnExec = true);
   /// Opens a pipe, defaulting it so that the file will close on exec
-  AREXPORT static FILE *popen(const char *command, const char *type, 
+  AREXPORT static FILE *popen(const char *command, const char *type,
 			      bool closeOnExec = true);
 
 
@@ -440,7 +440,7 @@ public:
 
   /** Convert seconds to milliseconds */
   static double secToMSec(const double sec) { return sec * 1000.0; }
-  
+
   /** Convert milliseconds to seconds */
   static double mSecToSec(const double msec) { return msec / 1000.0; }
 
@@ -449,7 +449,7 @@ public:
 
   /** Convert US feet  to meters */
   static double feetToMeters(const double f) { return f / 3.2808399; }
-    
+
 
 protected:
 //#ifndef WIN32
@@ -479,26 +479,26 @@ class ArMath
 {
 private:
   /* see ArMath::epsilon() */
-  static const double ourEpsilon; 
+  static const double ourEpsilon;
 
   // see getRandMax())
   static const long ourRandMax;
 
 public:
-   
-  /** @return a very small number which can be used for comparisons of floating 
+
+  /** @return a very small number which can be used for comparisons of floating
    * point values, etc. */
   AREXPORT static double epsilon();
 
 
-  /// This adds two angles together and fixes the result to [-180, 180] 
+  /// This adds two angles together and fixes the result to [-180, 180]
   /**
      @param ang1 first angle
      @param ang2 second angle, added to first
      @return sum of the angles, in range [-180,180]
      @see subAngle
      @see fixAngle */
-  static double addAngle(double ang1, double ang2) 
+  static double addAngle(double ang1, double ang2)
     { return fixAngle(ang1 + ang2); }
 
   /// This subtracts one angle from another and fixes the result to [-180,180]
@@ -509,7 +509,7 @@ public:
      @see addAngle
      @see fixAngle
   */
-  static double subAngle(double ang1, double ang2) 
+  static double subAngle(double ang1, double ang2)
     { return fixAngle(ang1 - ang2); }
 
   /// Takes an angle and returns the angle in range (-180,180]
@@ -519,7 +519,7 @@ public:
      @see addAngle
      @see subAngle
   */
-  static double fixAngle(double angle) 
+  static double fixAngle(double angle)
     {
       if (angle >= 360)
 	angle = angle - 360.0 * (double)((int)angle / 360);
@@ -530,14 +530,14 @@ public:
       if (angle > 180)
 	angle = - 180.0 + (angle - 180.0);
       return angle;
-    } 
-  
+    }
+
   /// Converts an angle in degrees to an angle in radians
   /**
      @param deg the angle in degrees
      @return the angle in radians
      @see radToDeg
-  */     
+  */
   static double degToRad(double deg) { return deg * M_PI / 180.0; }
 
   /// Converts an angle in radians to an angle in degrees
@@ -577,7 +577,7 @@ public:
      @param x the x distance
      @return the angle y and x form
   */
-  static double atan2(double y, double x) 
+  static double atan2(double y, double x)
     { return ArMath::radToDeg(::atan2(y, x)); }
 
   /// Finds if one angle is between two other angles
@@ -598,7 +598,7 @@ public:
      @param val the number to find the absolute value of
      @return the absolute value of the number
   */
-  static double fabs(double val) 
+  static double fabs(double val)
     {
       if (val < 0.0)
 	return -val;
@@ -609,37 +609,37 @@ public:
   /// Finds the closest integer to double given
   /**
      @param val the double to find the nearest integer to
-     @return the integer the value is nearest to (also caps it within 
+     @return the integer the value is nearest to (also caps it within
      int bounds)
   */
-  static int roundInt(double val) 
-    { 
+  static int roundInt(double val)
+    {
       val += .49;
       if (val > INT_MAX)
 	return (int) INT_MAX;
       else if (val < INT_MIN)
 	return (int) INT_MIN;
       else
-	return((int) floor(val)); 
+	return((int) floor(val));
     }
-    
+
   /// Finds the closest short to double given
   /**
      @param val the double to find the nearest short to
-     @return the integer the value is nearest to (also caps it within 
+     @return the integer the value is nearest to (also caps it within
      short bounds)
   */
-  static short roundShort(double val) 
-    { 
+  static short roundShort(double val)
+    {
       val += .49;
       if (val > 32767)
 	return (short) 32767;
       else if (val < -32768)
 	return (short) -32768;
       else
-	return((short) floor(val)); 
+	return((short) floor(val));
     }
-    
+
 
   /// Rotates a point around 0 by degrees given
   static void pointRotate(double *x, double *y, double th)
@@ -647,12 +647,12 @@ public:
       double cs, sn, xt, yt;
       cs = cos(th);
       sn = sin(th);
-      xt = *x;  
+      xt = *x;
       yt = *y;
       *x = cs*xt + sn*yt;
       *y = cs*yt - sn*xt;
     }
-  
+
   /** Returns a random number between 0 and RAND_MAX on Windows, 2^31 on Linux
    * (see ArUtil::getRandMax()). On Windows, rand() is used, on Linux, lrand48(). */
   static long random(void)
@@ -663,7 +663,7 @@ public:
       return(lrand48());
 #endif
     }
-  
+
   /// Maximum of value returned by random()
   AREXPORT static long getRandMax();
 
@@ -704,7 +704,7 @@ public:
   static bool isNan(double d) {
 #ifdef WIN32
     return _isnan(d);
-#else 
+#else
     return isnan(d);
 #endif
   }
@@ -717,11 +717,22 @@ public:
 #endif
   }
 
+#  define isfinite__(x) \
+     (sizeof (x) == sizeof (float)					      \
+      ? __finitef (x)							      \
+      : sizeof (x) == sizeof (double)					      \
+      ? __finite (x) : __finitel (x))
+
+
   static bool isFinite(float f) {
 #ifdef WIN32
 	  return _finite(f);
 #else
-	  return isfinite(f);
+# ifdef isfinite
+    return isfinite(f);
+# else
+    return isfinite__(f);
+# endif
 #endif
   }
 
@@ -729,7 +740,11 @@ public:
 #ifdef WIN32
 	  return _finite(d);
 #else
-	  return isfinite(d);
+#  ifdef isfinite
+    return isfinite(d);
+#  else
+    return isfinite__(d);
+#  endif
 #endif
   }
 
@@ -747,10 +762,10 @@ public:
 }; // end class ArMath
 
 /// Represents an x, y position with an orientation
-/** 
-    This class represents a robot position with heading.  The heading is 
+/**
+    This class represents a robot position with heading.  The heading is
     automatically adjusted to be in the range -180 to 180.  It also defaults
-    to 0, and so does not need to be used. (This avoids having 2 types of 
+    to 0, and so does not need to be used. (This avoids having 2 types of
     positions.)  Everything in the class is inline so it should be fast.
 
   @ingroup UtilityClasses
@@ -761,8 +776,8 @@ public:
 
 
   /// Constructor, with optional initial values
-  /** 
-      Sets the pose to the given values.  The constructor can be called with no 
+  /**
+      Sets the pose to the given values.  The constructor can be called with no
       parameters, with just x and y, or with x, y, and th.  The given heading (th)
       is automatically adjusted to be in the range -180 to 180.
 
@@ -775,22 +790,22 @@ public:
     myY(y),
     myTh(ArMath::fixAngle(th))
   {}
-    
+
   /// Copy Constructor
-  ArPose(const ArPose &pose) : 
+  ArPose(const ArPose &pose) :
     myX(pose.myX), myY(pose.myY), myTh(pose.myTh) {}
 
   /// Destructor
   virtual ~ArPose() {}
   /// Sets the position to the given values
-  /** 
+  /**
       Sets the position with the given three values, but the theta does not
       need to be given as it defaults to 0.
       @param x the position to set the x position to
       @param y the position to set the y position to
       @param th the position to set the th position to, default of 0
   */
-  virtual void setPose(double x, double y, double th = 0) 
+  virtual void setPose(double x, double y, double th = 0)
     { setX(x); setY(y); setTh(th); }
   /// Sets the position equal to the given position
   /** @param position the position value this instance should be set to */
@@ -818,23 +833,23 @@ public:
   double getThRad(void) const { return ArMath::degToRad(myTh); }
   /// Gets the whole position in one function call
   /**
-     Gets the whole position at once, by giving it 2 or 3 pointers to 
+     Gets the whole position at once, by giving it 2 or 3 pointers to
      doubles.  If you give the function a null pointer for a value it won't
-     try to use the null pointer, so you can pass in a NULL if you don't 
-     care about that value.  Also note that th defaults to NULL so you can 
+     try to use the null pointer, so you can pass in a NULL if you don't
+     care about that value.  Also note that th defaults to NULL so you can
      use this with just x and y.
      @param x a pointer to a double to set the x position to
      @param y a pointer to a double to set the y position to
      @param th a pointer to a double to set the heading to, defaults to NULL
    */
   void getPose(double *x, double *y, double *th = NULL) const
-    { 
-      if (x != NULL) 
+    {
+      if (x != NULL)
 	      *x = myX;
-      if (y != NULL) 
-	      *y = myY; 
-      if (th != NULL) 
-	      *th = myTh; 
+      if (y != NULL)
+	      *y = myY;
+      if (th != NULL)
+	      *th = myTh;
     }
   /// Finds the distance from this position to the given position
   /**
@@ -843,8 +858,8 @@ public:
   */
   virtual double findDistanceTo(ArPose position) const
     {
-      return ArMath::distanceBetween(getX(), getY(), 
-				     position.getX(), 
+      return ArMath::distanceBetween(getX(), getY(),
+				     position.getX(),
 				     position.getY());
     }
 
@@ -854,16 +869,16 @@ public:
      of times a second don't use this one use findDistanceTo
 
      @param position the position to find the distance to
-     @return the distance to the position from this instance 
+     @return the distance to the position from this instance
   **/
   virtual double squaredFindDistanceTo(ArPose position) const
     {
-      return ArMath::squaredDistanceBetween(getX(), getY(), 
-					    position.getX(), 
+      return ArMath::squaredDistanceBetween(getX(), getY(),
+					    position.getX(),
 					    position.getY());
     }
   /// Finds the angle between this position and the given position
-  /** 
+  /**
       @param position the position to find the angle to
       @return the angle to the given position from this instance, in degrees
   */
@@ -879,8 +894,8 @@ public:
   /// Add the other pose's X, Y and theta to this pose's X, Y, and theta (sum in theta will be normalized to (-180,180)), and return the result
   virtual ArPose operator+(const ArPose& other) const
   {
-    return ArPose( myX + other.getX(), 
-                   myY + other.getY(), 
+    return ArPose( myX + other.getX(),
+                   myY + other.getY(),
                    ArMath::fixAngle(myTh + other.getTh()) );
   }
 
@@ -888,11 +903,11 @@ public:
 
   virtual ArPose operator-(const ArPose& other) const
   {
-    return ArPose( myX - other.getX(), 
-                   myY - other.getY(), 
+    return ArPose( myX - other.getX(),
+                   myY - other.getY(),
                    ArMath::fixAngle(myTh - other.getTh()) );
   }
-  
+
   /** Adds the given pose to this one.
    *  @swigomit
    */
@@ -938,14 +953,14 @@ public:
       return myX < other.myX;
     }
     else if (fabs(myY - other.myY) > ArMath::epsilon()) {
-      return myY < other.myY;  
+      return myY < other.myY;
     }
     else if (fabs(myTh - other.myTh) > ArMath::epsilon()) {
       return myTh < other.myTh;
     }
     // Otherwise... x, y, and th are equal
     return false;
-    
+
   } // end operator <
 
   /// Finds the distance between two poses (static function, uses no
@@ -957,7 +972,7 @@ public:
      @return the distance between the poses
   **/
   static double distanceBetween(ArPose pose1, ArPose pose2)
-    { return ArMath::distanceBetween(pose1.getX(), pose1.getY(), 
+    { return ArMath::distanceBetween(pose1.getX(), pose1.getY(),
 				     pose2.getX(), pose2.getY()); }
 
 
@@ -970,17 +985,17 @@ protected:
 
 
 /// A class for time readings and measuring durations
-/** 
+/**
     This class is for timing durations or time between events.
     The time values it stores are relative to an abritrary starting time; it
     does not correspond to "real world" or "wall clock" time in any way,
-    so DON'T use this for keeping track of what time it is, 
+    so DON'T use this for keeping track of what time it is,
     just for timestamps and relative timing (e.g. "this loop needs to sleep another 100 ms").
 
     The recommended methods to use are setToNow() to reset the time,
     mSecSince() to obtain the number of milliseconds elapsed since it was
     last reset (or secSince() if you don't need millisecond precision), and
-    mSecSince(ArTime) or secSince(ArTime) to find the difference between 
+    mSecSince(ArTime) or secSince(ArTime) to find the difference between
     two ArTime objects.
 
     On systems where it is supported this will use a monotonic clock,
@@ -1011,8 +1026,8 @@ public:
     myMSec(other.myMSec)
   {}
 
-  /// Assignment operator 
-  ArTime &operator=(const ArTime &other) 
+  /// Assignment operator
+  ArTime &operator=(const ArTime &other)
   {
     if (this != &other) {
       mySec = other.mySec;
@@ -1024,9 +1039,9 @@ public:
   //
   /// Destructor
   ~ArTime() {}
-  
+
   /// Gets the number of milliseconds since the given timestamp to this one
-  long mSecSince(ArTime since) const 
+  long mSecSince(ArTime since) const
     {
       long long ret = mSecSinceLL(since);
       if (ret > INT_MAX)
@@ -1043,7 +1058,7 @@ public:
       */
     }
   /// Gets the number of milliseconds since the given timestamp to this one
-  long long mSecSinceLL(ArTime since) const 
+  long long mSecSinceLL(ArTime since) const
     {
       long long timeSince, timeThis;
 
@@ -1149,7 +1164,7 @@ public:
         myMSec = 0;
         return false;
       }
-      else 
+      else
       {
         timeThis += ms;
         mySec = timeThis / 1000;
@@ -1172,7 +1187,7 @@ public:
         myMSec = 0;
         return false;
       }
-      else 
+      else
       {
         timeThis += ms;
         mySec = timeThis / 1000;
@@ -1180,8 +1195,8 @@ public:
       }
       return true;
     } // end method addMSec
-  
-  
+
+
   /// Sets the seconds value (since the arbitrary starting time)
   void setSec(unsigned long sec) { mySec = sec; }
   /// Sets the milliseconds value (occuring after the seconds value)
@@ -1201,10 +1216,10 @@ public:
   unsigned long long getMSecLL(void) const { return myMSec; }
   /// Logs the time
   void log(const char *prefix = NULL) const
-    { ArLog::log(ArLog::Terse, 
-                 "%sTime: %lld.%lld", 
+    { ArLog::log(ArLog::Terse,
+                 "%sTime: %lld.%lld",
                  ((prefix != NULL) ? prefix : ""),
-                 mySec, 
+                 mySec,
 		 myMSec); }
   /// Gets if we're using a monotonic (ever increasing) clock
   static bool usingMonotonicClock()
@@ -1217,7 +1232,7 @@ public:
 #endif
       return false;
     }
-  
+
   /// Equality operator (for sets)
   bool operator==(const ArTime& other) const
   {
@@ -1228,7 +1243,7 @@ public:
   {
     return (!isAt(other));
   }
- 
+
   // Less than operator for sets
   bool operator<(const ArTime& other) const
   {
@@ -1240,14 +1255,14 @@ protected:
   unsigned long long myMSec;
 #if defined(_POSIX_TIMERS) && defined(_POSIX_MONOTONIC_CLOCK)
   static bool ourMonotonicClock;
-#endif 
+#endif
 
 }; // end class ArTime
 
 
 
 
-/// A subclass of ArPose that also stores a timestamp (ArTime) 
+/// A subclass of ArPose that also stores a timestamp (ArTime)
 /**
   @ingroup UtilityClasses
  */
@@ -1272,7 +1287,7 @@ protected:
    This class can be used to keep track of if a complete revolution has been
    done, it is used by doing doing a clearQuadrants when you want to stat
    the revolution.  Then at each point doing an updateQuadrant with the current
-   heading of the robot.  When didAllQuadrants returns true, then all the 
+   heading of the robot.  When didAllQuadrants returns true, then all the
    quadrants have been done.
   @ingroup UtilityClasses
 */
@@ -1280,17 +1295,17 @@ class ArSectors
 {
 public:
   /// Constructor
-  ArSectors(int numSectors = 8) 
-    { 
+  ArSectors(int numSectors = 8)
+    {
       mySectorSize = 360/numSectors;
-      mySectors = new int[numSectors]; 
-      myNumSectors = numSectors; 
+      mySectors = new int[numSectors];
+      myNumSectors = numSectors;
       clear();
     }
   /// Destructor
   virtual ~ArSectors() { delete mySectors; }
   /// Clears all quadrants
-  void clear(void) 
+  void clear(void)
     {
       int i;
       for (i = 0; i < myNumSectors; i++)
@@ -1323,7 +1338,7 @@ protected:
 
 /// Represents geometry of a line in two-dimensional space.
 /**
-   Note this the theoretical line, i.e. it goes infinitely. 
+   Note this the theoretical line, i.e. it goes infinitely.
    For a line segment with endpoints, use ArLineSegment.
    @sa ArLineSegment
   @ingroup UtilityClasses
@@ -1336,12 +1351,12 @@ public:
   /// Constructor with parameters
   ArLine(double a, double b, double c) { newParameters(a, b, c); }
   /// Constructor with endpoints
-  ArLine(double x1, double y1, double x2, double y2) 
+  ArLine(double x1, double y1, double x2, double y2)
   { newParametersFromEndpoints(x1, y1, x2, y2); }
   /// Destructor
   virtual ~ArLine() {}
   /// Sets the line parameters (make it not a segment)
-  void newParameters(double a, double b, double c) 
+  void newParameters(double a, double b, double c)
     { myA = a; myB = b; myC = c; }
   /// Sets the line parameters from endpoints, but makes it not a segment
   void newParametersFromEndpoints(double x1, double y1, double x2, double y2)
@@ -1353,10 +1368,10 @@ public:
   /// Gets the C line parameter
   double getC(void) const { return myC; }
   /// finds the intersection of this line with another line
-  /** 
+  /**
       @param line the line to check if it intersects with this line
       @param pose if the lines intersect, the pose is set to the location
-      @return true if they intersect, false if they do not 
+      @return true if they intersect, false if they do not
   **/
   bool intersects(const ArLine *line, ArPose *pose) const
     {
@@ -1377,7 +1392,7 @@ public:
   /// Makes the given line perpendicular to this one through the given pose
   void makeLinePerp(const ArPose *pose, ArLine *line) const
     {
-      line->newParameters(getB(), -getA(), 
+      line->newParameters(getB(), -getA(),
 			  (getA() * pose->getY()) - (getB() * pose->getX()));
     }
    /// Calculate the distance from the given point to (its projection on) this line segment
@@ -1451,7 +1466,7 @@ protected:
 };
 
 /// Represents a line segment in two-dimensional space.
-/** The segment is defined by the coordinates of each endpoint. 
+/** The segment is defined by the coordinates of each endpoint.
   @ingroup UtilityClasses
 */
 class ArLineSegment
@@ -1473,7 +1488,7 @@ public:
   /// Set new end points for this line segment
   void newEndPoints(double x1, double y1, double x2, double y2)
     {
-      myX1 = x1; myY1 = y1; myX2 = x2; myY2 = y2; 
+      myX1 = x1; myY1 = y1; myX2 = x2; myY2 = y2;
       myLine.newParametersFromEndpoints(myX1, myY1, myX2, myY2);
     }
   /// Set new end points for this line segment
@@ -1489,7 +1504,7 @@ public:
   /**
       @param line Line to check for intersection against this line segment.
       @param pose if the lines intersect, the X and Y components of this pose are set to the point of intersection.
-      @return true if they intersect, false if they do not 
+      @return true if they intersect, false if they do not
    **/
   bool intersects(const ArLine *line, ArPose *pose) const
     {
@@ -1536,7 +1551,7 @@ public:
       return intersects(&perpLine, perpPoint);
     }
 #endif
-  /** @copydoc getPerpPoint(const ArPose&, ArPose*)  
+  /** @copydoc getPerpPoint(const ArPose&, ArPose*)
    *  (This version simply allows you to pass the first pose as a pointer, in
    *  time-critical situations where a full copy of the object would impact
    *  performance.)
@@ -1603,7 +1618,7 @@ public:
       }
       return (perpPose.findDistanceTo(pose));
     }
-  
+
   /// Determines the length of the line segment
   double getLengthOf() const
   {
@@ -1621,7 +1636,7 @@ public:
   /// Gets the x coordinate of the first endpoint
   double getX1(void) const { return myX1; }
   /// Gets the y coordinate of the first endpoint
-  double getY1(void) const { return myY1; } 
+  double getY1(void) const { return myY1; }
   /// Gets the x coordinate of the second endpoint
   double getX2(void) const { return myX2; }
   /// Gets the y coordinate of the second endpoint
@@ -1641,11 +1656,11 @@ public:
 
       if (!isVertical || !isHorizontal) {
 
-        return (((isVertical) || 
-	               (pose->getX() >= myX1 && pose->getX() <= myX2) || 
+        return (((isVertical) ||
+	               (pose->getX() >= myX1 && pose->getX() <= myX2) ||
 	               (pose->getX() <= myX1 && pose->getX() >= myX2)) &&
-	              ((isHorizontal) || 
-	               (pose->getY() >= myY1 && pose->getY() <= myY2) || 
+	              ((isHorizontal) ||
+	               (pose->getY() >= myY1 && pose->getY() <= myY2) ||
 	               (pose->getY() <= myY1 && pose->getY() >= myY2)));
       }
       else { // single point segment
@@ -1685,7 +1700,7 @@ public:
       return myX1 < other.myX1;
     }
     else if (fabs(myY1 - other.myY1) > ArMath::epsilon()) {
-      return myY1 < other.myY1;  
+      return myY1 < other.myY1;
     }
     if (fabs(myX2 - other.myX2) > ArMath::epsilon()) {
       return myX2 < other.myX2;
@@ -1755,7 +1770,7 @@ public:
   /// Sets the name
   AREXPORT void setName(const char *name);
   /// Gets the name
-  AREXPORT const char *getName(void);  
+  AREXPORT const char *getName(void);
   /// Gets the num averaged
   AREXPORT size_t getCurrentNumAveraged(void);
 protected:
@@ -1765,10 +1780,10 @@ protected:
 };
 
 
-//class ArStrCaseCmpOp :  public std::binary_function <const std::string&, const std::string&, bool> 
+//class ArStrCaseCmpOp :  public std::binary_function <const std::string&, const std::string&, bool>
 /// strcasecmp for sets
 /// @ingroup UtilityClasses
-struct ArStrCaseCmpOp 
+struct ArStrCaseCmpOp
 {
 public:
   bool operator() (const std::string &s1, const std::string &s2) const
@@ -1796,7 +1811,7 @@ public:
 struct ArLineSegmentCmpOp
 {
 public:
-  bool operator() (const ArLineSegment &line1, 
+  bool operator() (const ArLineSegment &line1,
 		               const ArLineSegment &line2) const
   {
     return (line1 < line2);
@@ -1843,10 +1858,10 @@ protected:
 class ArPriority
 {
 public:
-  enum Priority 
+  enum Priority
   {
-    IMPORTANT, ///< Basic things that should be modified to suit 
-    BASIC = IMPORTANT,  ///< Basic things that should be modified to suit 
+    IMPORTANT, ///< Basic things that should be modified to suit
+    BASIC = IMPORTANT,  ///< Basic things that should be modified to suit
     FIRST_PRIORITY = IMPORTANT,
 
     NORMAL,    ///< Intermediate things that users may want to modify
@@ -1870,7 +1885,7 @@ public:
 
   /// Returns the displayable text string for the given priority
   AREXPORT static const char * getPriorityName(Priority priority);
-   
+
   /// Returns the priority value that corresponds to the given displayable text string
   AREXPORT static Priority getPriorityFromName(const char *text);
 
@@ -1889,13 +1904,13 @@ protected:
 
 /// holds information about ArStringInfo component strings (it's a helper class for other things)
 /**
-   This class holds information for about different strings that are available 
+   This class holds information for about different strings that are available
  **/
 class ArStringInfoHolder
 {
 public:
   /// Constructor
-  ArStringInfoHolder(const char *name, ArTypes::UByte2 maxLength, 
+  ArStringInfoHolder(const char *name, ArTypes::UByte2 maxLength,
 		     ArFunctor2<char *, ArTypes::UByte2> *functor)
     { myName = name; myMaxLength = maxLength; myFunctor = functor; }
   /// Destructor
@@ -1912,35 +1927,35 @@ protected:
   ArFunctor2<char *, ArTypes::UByte2> *myFunctor;
 };
 
-/// This class just holds some helper functions for the ArStringInfoHolder 
+/// This class just holds some helper functions for the ArStringInfoHolder
 class ArStringInfoHolderFunctions
 {
 public:
-  static void intWrapper(char * buffer, ArTypes::UByte2 bufferLen, 
+  static void intWrapper(char * buffer, ArTypes::UByte2 bufferLen,
 			 ArRetFunctor<int> *functor, const char *format)
-    { snprintf(buffer, bufferLen - 1, format, functor->invokeR()); 
+    { snprintf(buffer, bufferLen - 1, format, functor->invokeR());
     buffer[bufferLen-1] = '\0'; }
-  static void doubleWrapper(char * buffer, ArTypes::UByte2 bufferLen, 
+  static void doubleWrapper(char * buffer, ArTypes::UByte2 bufferLen,
 			    ArRetFunctor<double> *functor, const char *format)
-    { snprintf(buffer, bufferLen - 1, format, functor->invokeR()); 
+    { snprintf(buffer, bufferLen - 1, format, functor->invokeR());
     buffer[bufferLen-1] = '\0'; }
-  static void boolWrapper(char * buffer, ArTypes::UByte2 bufferLen, 
+  static void boolWrapper(char * buffer, ArTypes::UByte2 bufferLen,
 			  ArRetFunctor<bool> *functor, const char *format)
-    { snprintf(buffer, bufferLen - 1, format, 
-	       ArUtil::convertBool(functor->invokeR())); 
+    { snprintf(buffer, bufferLen - 1, format,
+	       ArUtil::convertBool(functor->invokeR()));
     buffer[bufferLen-1] = '\0'; }
-  static void stringWrapper(char * buffer, ArTypes::UByte2 bufferLen, 
-			    ArRetFunctor<const char *> *functor, 
+  static void stringWrapper(char * buffer, ArTypes::UByte2 bufferLen,
+			    ArRetFunctor<const char *> *functor,
 			    const char *format)
-  { snprintf(buffer, bufferLen - 1, format, functor->invokeR()); 
+  { snprintf(buffer, bufferLen - 1, format, functor->invokeR());
   buffer[bufferLen-1] = '\0'; }
-  static void unsignedLongWrapper(char * buffer, ArTypes::UByte2 bufferLen, 
+  static void unsignedLongWrapper(char * buffer, ArTypes::UByte2 bufferLen,
 			 ArRetFunctor<unsigned long> *functor, const char *format)
-    { snprintf(buffer, bufferLen - 1, format, functor->invokeR()); 
+    { snprintf(buffer, bufferLen - 1, format, functor->invokeR());
     buffer[bufferLen-1] = '\0'; }
-  static void longWrapper(char * buffer, ArTypes::UByte2 bufferLen, 
+  static void longWrapper(char * buffer, ArTypes::UByte2 bufferLen,
 			 ArRetFunctor<long> *functor, const char *format)
-    { snprintf(buffer, bufferLen - 1, format, functor->invokeR()); 
+    { snprintf(buffer, bufferLen - 1, format, functor->invokeR());
     buffer[bufferLen-1] = '\0'; }
 };
 
@@ -1958,12 +1973,12 @@ public:
     @ingroup UtilityClasses
 **/
 
-template<class GenericFunctor> 
+template<class GenericFunctor>
 class ArGenericCallbackList
 {
 public:
   /// Constructor
-  ArGenericCallbackList(const char *name = "", 
+  ArGenericCallbackList(const char *name = "",
 				 ArLog::LogLevel logLevel = ArLog::Verbose,
 				 bool singleShot = false)
     {
@@ -1986,7 +2001,7 @@ public:
     {
       myDataMutex.lock();
       myList.insert(
-	      std::pair<int, GenericFunctor>(-position, 
+	      std::pair<int, GenericFunctor>(-position,
 					     functor));
       myDataMutex.unlock();
     }
@@ -1995,7 +2010,7 @@ public:
     {
       myDataMutex.lock();
       typename std::multimap<int, GenericFunctor>::iterator it;
-      
+
       for (it = myList.begin(); it != myList.end(); it++)
       {
 	if ((*it).second == functor)
@@ -2056,16 +2071,16 @@ protected:
   bool myLogging;
 };
 
-/** A class to hold a list of callbacks to call sequentially. 
+/** A class to hold a list of callbacks to call sequentially.
   @ingroup UtilityClasses
 */
 class ArCallbackList : public ArGenericCallbackList<ArFunctor *>
 {
 public:
   /// Constructor
-  ArCallbackList(const char *name = "", 
+  ArCallbackList(const char *name = "",
 			  ArLog::LogLevel logLevel = ArLog::Verbose,
-			  bool singleShot = false) : 
+			  bool singleShot = false) :
     ArGenericCallbackList<ArFunctor *>(name, logLevel, singleShot)
     {
     }
@@ -2077,36 +2092,36 @@ public:
   void invoke(void)
     {
       myDataMutex.lock();
-      
+
       std::multimap<int, ArFunctor *>::iterator it;
       ArFunctor *functor;
-      
+
       if(myLogging)
 	ArLog::log(myLogLevel, "%s: Starting calls", myName.c_str());
-      
-      for (it = myList.begin(); 
-	   it != myList.end(); 
+
+      for (it = myList.begin();
+	   it != myList.end();
 	   it++)
       {
 	functor = (*it).second;
-	if (functor == NULL) 
+	if (functor == NULL)
 	  continue;
-	
+
 	if(myLogging)
 	{
 	  if (functor->getName() != NULL && functor->getName()[0] != '\0')
 	    ArLog::log(myLogLevel, "%s: Calling functor '%s' at %d",
 		       myName.c_str(), functor->getName(), -(*it).first);
 	  else
-	    ArLog::log(myLogLevel, "%s: Calling unnamed functor at %d", 
+	    ArLog::log(myLogLevel, "%s: Calling unnamed functor at %d",
 		       myName.c_str(), -(*it).first);
 	}
 	functor->invoke();
       }
-      
+
       if(myLogging)
 	ArLog::log(myLogLevel, "%s: Ended calls", myName.c_str());
-      
+
       if (mySingleShot)
       {
 	if(myLogging)
@@ -2141,9 +2156,9 @@ class ArCallbackList1 : public ArGenericCallbackList<ArFunctor1<P1> *>
 {
 public:
   /// Constructor
-  ArCallbackList1(const char *name = "", 
+  ArCallbackList1(const char *name = "",
 			  ArLog::LogLevel logLevel = ArLog::Verbose,
-			  bool singleShot = false) : 
+			  bool singleShot = false) :
     ArGenericCallbackList<ArFunctor1<P1> *>(name, logLevel, singleShot)
     {
     }
@@ -2155,48 +2170,48 @@ public:
   void invoke(P1 p1)
     {
       ArGenericCallbackList<ArFunctor1<P1> *>::myDataMutex.lock();
-      
+
       typename std::multimap<int, ArFunctor1<P1> *>::iterator it;
       ArFunctor1<P1> *functor;
-      
+
       if(ArGenericCallbackList<ArFunctor1<P1> *>::myLogging)
 	ArLog::log(
-		ArGenericCallbackList<ArFunctor1<P1> *>::myLogLevel, 
-		"%s: Starting calls1", 
+		ArGenericCallbackList<ArFunctor1<P1> *>::myLogLevel,
+		"%s: Starting calls1",
 		ArGenericCallbackList<ArFunctor1<P1> *>::myName.c_str());
-      
-      for (it = ArGenericCallbackList<ArFunctor1<P1> *>::myList.begin(); 
-	   it != ArGenericCallbackList<ArFunctor1<P1> *>::myList.end(); 
+
+      for (it = ArGenericCallbackList<ArFunctor1<P1> *>::myList.begin();
+	   it != ArGenericCallbackList<ArFunctor1<P1> *>::myList.end();
 	   it++)
       {
 	functor = (*it).second;
-	if (functor == NULL) 
+	if (functor == NULL)
 	  continue;
-	
+
 	if(ArGenericCallbackList<ArFunctor1<P1> *>::myLogging)
 	{
 	  if (functor->getName() != NULL && functor->getName()[0] != '\0')
 	    ArLog::log(ArGenericCallbackList<ArFunctor1<P1> *>::myLogLevel,
 		       "%s: Calling functor '%s' at %d",
-		       ArGenericCallbackList<ArFunctor1<P1> *>::myName.c_str(), 
+		       ArGenericCallbackList<ArFunctor1<P1> *>::myName.c_str(),
 		       functor->getName(), -(*it).first);
 	  else
-	    ArLog::log(ArGenericCallbackList<ArFunctor1<P1> *>::myLogLevel, 
-		       "%s: Calling unnamed functor at %d", 
-		       ArGenericCallbackList<ArFunctor1<P1> *>::myName.c_str(), 
+	    ArLog::log(ArGenericCallbackList<ArFunctor1<P1> *>::myLogLevel,
+		       "%s: Calling unnamed functor at %d",
+		       ArGenericCallbackList<ArFunctor1<P1> *>::myName.c_str(),
 		       -(*it).first);
 	}
 	functor->invoke(p1);
       }
-      
+
       if(ArGenericCallbackList<ArFunctor1<P1> *>::myLogging)
 	ArLog::log(ArGenericCallbackList<ArFunctor1<P1> *>::myLogLevel, "%s: Ended calls", ArGenericCallbackList<ArFunctor1<P1> *>::myName.c_str());
-      
+
       if (ArGenericCallbackList<ArFunctor1<P1> *>::mySingleShot)
       {
 	if(ArGenericCallbackList<ArFunctor1<P1> *>::myLogging)
-	  ArLog::log(ArGenericCallbackList<ArFunctor1<P1> *>::myLogLevel, 
-		     "%s: Clearing callbacks", 
+	  ArLog::log(ArGenericCallbackList<ArFunctor1<P1> *>::myLogLevel,
+		     "%s: Clearing callbacks",
 		     ArGenericCallbackList<ArFunctor1<P1> *>::myName.c_str());
 	ArGenericCallbackList<ArFunctor1<P1> *>::myList.clear();
       }
@@ -2306,14 +2321,14 @@ public:
   static ArDeviceConnection *createSerialConnection(
 	  const char *port, const char *defaultInfo, const char *logPrefix);
   /// Gets functor for creating an ArSerialConnection
-  static ArRetFunctor3<ArDeviceConnection *, const char *, const char *, 
+  static ArRetFunctor3<ArDeviceConnection *, const char *, const char *,
 		       const char *> *getCreateSerialCB(void);
 
   /// Creates an ArTcpConnection
   static ArDeviceConnection *createTcpConnection(
 	  const char *port, const char *defaultInfo, const char *logPrefix);
   /// Gets functor for creating an ArTcpConnection
-  static ArRetFunctor3<ArDeviceConnection *, const char *, const char *, 
+  static ArRetFunctor3<ArDeviceConnection *, const char *, const char *,
 		       const char *> *getCreateTcpCB(void);
 
   /// Creates an ArSerialConnection for RS422
@@ -2331,9 +2346,9 @@ protected:
   /// Internal Create ArSerialConnection
   static ArDeviceConnection *internalCreateSerialConnection(
 	  const char *port, const char *defaultInfo, const char *logPrefix, bool is422);
-  static ArGlobalRetFunctor3<ArDeviceConnection *, const char *, const char *, 
+  static ArGlobalRetFunctor3<ArDeviceConnection *, const char *, const char *,
 			     const char *> ourSerialCB;
-  static ArGlobalRetFunctor3<ArDeviceConnection *, const char *, const char *, 
+  static ArGlobalRetFunctor3<ArDeviceConnection *, const char *, const char *,
 			     const char *> ourTcpCB;
   static ArGlobalRetFunctor3<ArDeviceConnection *, const char *, const char *,
 			     const char *> ourSerial422CB;
@@ -2346,12 +2361,10 @@ class ArPoseUtil
 {
 public:
   static std::list<ArPose> findCornersFromRobotBounds(
-	  double radius, double widthLeft, double widthRight, 
+	  double radius, double widthLeft, double widthRight,
 	  double lengthFront, double lengthRear, bool fastButUnsafe);
-  static std::list<ArPose> breakUpDistanceEvenly(ArPose start, ArPose end, 
+  static std::list<ArPose> breakUpDistanceEvenly(ArPose start, ArPose end,
 						 int resolution);
 };
 
 #endif // ARIAUTIL_H
-
-

@@ -18,9 +18,9 @@ Copyright (C) 2011, 2012, 2013 Adept Technology
      along with this program; if not, write to the Free Software
      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-If you wish to redistribute ARIA under different terms, contact 
-Adept MobileRobots for information about a commercial version of ARIA at 
-robots@mobilerobots.com or 
+If you wish to redistribute ARIA under different terms, contact
+Adept MobileRobots for information about a commercial version of ARIA at
+robots@mobilerobots.com or
 Adept MobileRobots, 10 Columbia Drive, Amherst, NH 03031; +1-603-881-7960
 */
 
@@ -31,7 +31,7 @@ Adept MobileRobots, 10 Columbia Drive, Amherst, NH 03031; +1-603-881-7960
 
 /* We need the module declared as "AriaPy" here so that other modules
    (like ArNetworking or ARNL) that use this wrapper will know what
-   the resulting Python module and wrapper library are called. 
+   the resulting Python module and wrapper library are called.
 */
 %module(directors="1", docstring="Python wrapper library for Aria") AriaPy
 
@@ -42,10 +42,17 @@ Adept MobileRobots, 10 Columbia Drive, Amherst, NH 03031; +1-603-881-7960
 %module(directors="1", docstring="Java wrapper library for Aria") AriaJava
 
 # else
+# ifdef SWIGJAVASCRIPT
+/*# warning Defining ARIA wrapper interface for JavaScript*/
+
+%module(directors="1", docstring="JavaScript wrapper library for Aria") AriaJS
+
+# else
 # warning Defining ARIA wrapper interface for something other that Java or Python. This might be an error.
 
 %module(directors="1", docstring="Wrapper library for Aria") Aria
 
+#  endif
 # endif
 #endif
 
@@ -82,16 +89,16 @@ Adept MobileRobots, 10 Columbia Drive, Amherst, NH 03031; +1-603-881-7960
 /* Enable director classes (subclasses) for ArAction.
    Other classes in Aria that can be subclasses, but very rarely are,
    include ArResolver, ArBasePacket, ArDeviceConnection, ArRangeDevice,
-   ArActionGroup, ArMode; maybe others.  
-   In Java it needs to be enabled for various ArFunctor subclasses too, 
+   ArActionGroup, ArMode; maybe others.
+   In Java it needs to be enabled for various ArFunctor subclasses too,
    see later.
    You could add %feature("director") directives for those classes
    and regenerate the wrapper libraries if you want to use them.
    (They are omitted since making a class a director adds lots
    of code to the wrapper library.)
    ArASyncTask is also often subclassed, but threading in Python is
-   kind of hard to get working right, at least as of Python 2.3, 
-   especially going through Swig to do it, so providing ArASyncTask is 
+   kind of hard to get working right, at least as of Python 2.3,
+   especially going through Swig to do it, so providing ArASyncTask is
    postponed.
 */
 %feature("director") ArAction;
@@ -191,7 +198,12 @@ Adept MobileRobots, 10 Columbia Drive, Amherst, NH 03031; +1-603-881-7960
 %ignore ArConfigArg::ArConfigArg(const char*, unsigned char*, const char*, int, int);
 %ignore ArConfigArg::ArConfigArg(const char*, double*, const char*, double, double);
 %ignore ArConfigArg::ArConfigArg(const char*, bool*, const char*);
- 
+#ifdef SWIGJAVASCRIPT
+/* This function prevents Node addon from working - reason unknown */
+%ignore ArConfigArg::setString(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char*, unsigned int, bool);
+%ignore ArConfigArg::setString;
+#endif
+
 
 /* Rename reserved words in Python: */
 #ifdef SWIGPYTHON
@@ -200,7 +212,7 @@ Adept MobileRobots, 10 Columbia Drive, Amherst, NH 03031; +1-603-881-7960
 %rename(printPoint) Ar3DPoint::print;
 #endif
 
-/* In Java and Python, you can easily concatenate strings and primitive types, 
+/* In Java and Python, you can easily concatenate strings and primitive types,
    so we can just refer to logPlain() as log(), and ignore the varargs log(). */
 %ignore ArLog::log;
 %rename (log) ArLog::logPlain;
@@ -208,7 +220,7 @@ Adept MobileRobots, 10 Columbia Drive, Amherst, NH 03031; +1-603-881-7960
 /* Rename names of some built in methods in java.lang.Object */
 #ifdef SWIGJAVA
 %rename(waitFor) ArCondition::wait;
-%rename(cloneMap) ArMapInterface::clone; 
+%rename(cloneMap) ArMapInterface::clone;
 #endif
 
 /* cant wrap operators (should provide replacement methods though, TODO) */
@@ -316,7 +328,7 @@ Adept MobileRobots, 10 Columbia Drive, Amherst, NH 03031; +1-603-881-7960
 
 /* XXX TODO? or will the jni and jtype typemaps below deal with it? :
 %typecheck(java,SWIG_TYPECHECK_POINTER) (int *, char **) {
-  // TODO 
+  // TODO
 }
 */
 
@@ -329,8 +341,8 @@ Adept MobileRobots, 10 Columbia Drive, Amherst, NH 03031; +1-603-881-7960
 
 
 /* In Java, we alsoneed to override how SWIG defines some methods in the wrappers,
- * to be public not protected (the defaut javabody typemap is defined in 
- * java.swg) so that other packages such as ArNetworking and ARNL can access them: 
+ * to be public not protected (the defaut javabody typemap is defined in
+ * java.swg) so that other packages such as ArNetworking and ARNL can access them:
  */
 %typemap(javabody) SWIGTYPE %{
   /* (begin code from javabody typemap) */
@@ -410,9 +422,9 @@ struct ArJoyVec3i { int x, y, z; };
 #endif
 
 
-/* Give names to some standard library container template types. 
+/* Give names to some standard library container template types.
  * In Java, you must use the special template instance names defined
- * here to subclass from, e.g. "class MyPacketHandler extends ArRetFunctor1_Bool_ArRobotPacketP" 
+ * here to subclass from, e.g. "class MyPacketHandler extends ArRetFunctor1_Bool_ArRobotPacketP"
  */
 
 
@@ -426,9 +438,21 @@ struct ArJoyVec3i { int x, y, z; };
 #ifdef SWIGJAVA
 %include "wrapper_std_list_java.i"
 #else
+#ifdef SWIGPYTHON
 %include "std_list.i"
 #endif
+#endif
 
+//#ifdef SWIGJAVASCRIPT
+//%template(ArMapObjectPtrList) std::vector<ArMapObject*>;
+//%template(ArFunctorPtrList) std::vector<ArFunctor*>;
+//%template(ArPoseList) std::vector<ArPose>;
+//%template(ArPosePtrList) std::vector<ArPose*>;
+//%template(ArRangeDevicePtrList) std::vector<ArRangeDevice*>;
+//%template(ArArgumentBuilderPtrList) std::vector<ArArgumentBuilder*>;
+//%template(ArLineSegmentList) std::vector<ArLineSegment>;
+//%template(ArLineSegmentPtrList) std::vector<ArLineSegment*>;
+//#else
 %template(ArMapObjectPtrList) std::list<ArMapObject*>;
 %template(ArFunctorPtrList) std::list<ArFunctor*>;
 %template(ArPoseList) std::list<ArPose>;
@@ -439,11 +463,14 @@ struct ArJoyVec3i { int x, y, z; };
 %template(ArArgumentBuilderPtrList) std::list<ArArgumentBuilder*>;
 %template(ArLineSegmentList) std::list<ArLineSegment>;
 %template(ArLineSegmentPtrList) std::list<ArLineSegment*>;
+//#endif
 /*#endif*/
 
 #ifndef SWIGJAVA /* doesn't have set */
+#ifndef SWIGJAVASCRIPT /* doesn't have set */
 %include "std_set.i"
 %template(IntSet) std::set<int>;
+#endif
 #endif
 
 %include "std_map.i"
@@ -677,9 +704,9 @@ struct ArJoyVec3i { int x, y, z; };
     return s;
   }
 
-  bool write(std::string s) { 
-    return self->write( (void*)(s.c_str()), (size_t)(s.length())); 
-  } 
+  bool write(std::string s) {
+    return self->write( (void*)(s.c_str()), (size_t)(s.length()));
+  }
 }
 
 
@@ -739,4 +766,3 @@ struct ArJoyVec3i { int x, y, z; };
    is not found.)  Maybe only do this for Java since Python has the "None"
    object value?  (Also falso boolean returns for status?)
 */
-
